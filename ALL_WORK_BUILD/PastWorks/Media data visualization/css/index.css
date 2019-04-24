@@ -1,0 +1,210 @@
+@font-face {
+    font-family: myFont;
+    src: url('myFont.ttf');
+}
+
+@font-face {
+    font-family: number;
+    src: url('number.ttf');
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+    font-family: myFont;
+}
+
+body {
+    background-image: url('../img/bg.jpg');
+    background-size: 100% 100%;
+    overflow: hidden;
+}
+
+div.header {
+    position: absolute;
+    top: 8.3%;
+    height: 9.5%;
+    width: 100%;
+    text-align: center;
+    background-image: url('../img/10.png');
+    background-size: 100% 100%;
+    background-position: -65px 0px;
+}
+
+div.header img {
+    height: 88%;
+    margin-left: -0.5%;
+    width: 24%;
+}
+
+#three-container {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    z-index: -100;
+}
+
+.sidebar {
+    position: absolute;
+    bottom: 10px;
+}
+
+.sidebar.left-sidebar {
+    position: absolute;
+    width: 430px;
+    padding-left: 35px;
+}
+
+.sidebar.right-sidebar {
+    position: absolute;
+    right: 0px;
+    width: 500px;
+    padding-right: 35px;
+}
+
+.sidebar .section {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.sidebar .section .title {
+    margin-bottom: 12px;
+}
+
+.sidebar .section .title img {
+    width: 50px;
+    height: 50px;
+}
+
+.sidebar .section .title span {
+    position: relative;
+    font-size: 20px;
+    color: #45bbff;
+    top: -16px;
+}
+
+.emotion-speedometer {
+    width: 355px;
+    height: 335px;
+    background-image: url('../img/6.png');
+    background-size: 100% 100%;
+}
+
+.keyword-cloud {
+    width: 100%;
+    height: 200px;
+}
+
+.record-header {
+    text-align: right;
+    height: 19px;
+    padding-right: 30px;
+}
+
+.record-header .quantity {
+    font-size: 30px;
+    font-family: number;
+    color: #e77018;
+    position: relative;
+    letter-spacing: 5px;
+    top: -20px;
+}
+
+.record-header .unit {
+    color: #e77018;
+    font-size: 40px;
+    position: relative;
+    top: -21px;
+    right: 10px;
+}
+
+.record {
+    text-align: right;
+    padding-right: 30px;
+    margin-top: 15px;
+}
+
+.record .quantity {
+    font-size: 30px;
+    font-family: number;
+    color: #0592ff;
+    position: relative;
+    letter-spacing: 5px;
+}
+
+.record .unit {
+    color: #0592ff;
+    font-size: 40px;
+    position: relative;
+    top: -1px;
+    right: 10px;
+}
+
+.record-label {
+    text-align: right;
+    padding-right: 41px;
+    color: #45bbff;
+    font-size: 20px;
+}
+
+.hotspot-ranking {
+    width: 400px;
+    height: 200px;
+    background-image: url('../img/8.png');
+    background-size: 100% 100%;
+    margin-left: 52px;
+    margin-top: -20px;
+}
+
+.hotspot-ranking ol {
+    margin: 0px;
+    padding: 0px;
+}
+
+.hotspot-ranking ol li {
+    list-style: none;
+    height: 40px;
+    line-height: 40px;
+    padding-left: 15px;
+    padding-right: 15px;
+    color: #ffffff;
+    overflow: hidden;
+    font-size: 17px;
+}
+
+.clock {
+    position: absolute;
+    top: 32px;
+    right: 50px;
+    width: 433px;
+    height: 355px;
+    text-align: center;
+    color: #ffffff;
+    background-image: url('../img/7.png');
+    background-size: 100% 100%;
+}
+
+.clock .time {
+    margin-top: 115px;
+    font-size: 44px;
+    letter-spacing: 17px;
+    font-weight: 900;
+}
+
+.clock .date {
+    margin-top: 20px;
+    font-size: 15px;
+    letter-spacing: 5px;
+}
+
+.clock .weather {
+    margin-top: 20px;
+    font-size: 15px;
+    letter-spacing: 5px;
+}

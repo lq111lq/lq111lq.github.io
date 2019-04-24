@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style type="text/css">
+			html,
+			body {
+				margin: 0px;
+				width: 100%;
+				height: 100%;
+				overflow: hidden;
+				background: #E1D6BB;
+			}
+			
+			* {
+				box-sizing: border-box;
+			}
+			
+			ul.navigation {
+				height: 43px;
+				line-height: 42px;
+				width: 100%;
+				margin: 0 auto;
+				padding: 0;
+				position: relative;
+				background: #000;
+				border-bottom: 1px solid #303030;
+			}
+			
+			ul.navigation> li:first-child {
+				border: 0;
+				margin-left: 0;
+				padding-left: 0;
+				border-bottom: 1px solid #303030;
+			}
+			
+			ul.navigation li {
+				list-style: none;
+				float: left;
+				color: #fff;
+				border-left: 1px solid #303030;
+				border-right: 1px solid #303030;
+				font-size: 12px;
+				font-weight: 700;
+				background: #000;
+				height: 43px;
+				border-bottom: 1px solid #303030;
+			}
+			
+			ul.navigation li:not(:first-child) {
+				padding: 0 18px;
+			}
+			
+			ul.navigation li.last {
+				float: right;
+				border-right: 0;
+			}
+			
+			ul.navigation li a+ a {
+				display: inline-block;
+				padding-left: 10px;
+				margin-left: 10px;
+			}
+			
+			ul.navigation li a#back {
+				display: block;
+				padding: 0 20px;
+			}
+			
+			ul.navigation li a:link,
+			ul.navigation li a:visited {
+				color: #777777;
+				text-decoration: none;
+				text-transform: uppercase;
+				letter-spacing: 2px;
+			}
+			
+			ul.navigation li a:hover,
+			ul.navigation li a:active {
+				color: #fff;
+			}
+			
+			ul.navigation li.next:hover,
+			ul.navigation li.prev:hover,
+			ul.navigation li.next:hover *,
+			ul.navigation li.prev:hover * {
+				color: #fff !important;
+			}
+			
+			ul.navigation li.next *,
+			ul.navigation li.prev * {
+				font-size: 125%;
+				color: #777777;
+			}
+			
+			ul.navigation li.next,
+			ul.navigation li.prev {
+				cursor: pointer;
+			}
+			
+			ul.navigation li span {
+				font-weight: 700;
+				color: #777777;
+				letter-spacing: 1px;
+			}
+			
+			ul.navigation li#dat-slides-desc {
+				min-width: 86px;
+				color: #777777;
+				border: 0;
+				text-align: center;
+				overflow: visible;
+				border-bottom: 1px solid #303030;
+			}
+			
+			ul.navigation li#dat-slides-desc span {
+				color: #fff;
+				font-weight: 700;
+				letter-spacing: 3px;
+				position: relative;
+				display: inline-block;
+			}
+			
+			#dat-slides-toc {
+				-webkit-transition: all 350ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
+				-moz-transition: all 350ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
+				-ms-transition: all 350ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
+				-o-transition: all 350ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
+				transition: all 350ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
+				background: #000;
+				position: fixed;
+				top: 42px;
+				left: 171px;
+				border: 0;
+				overflow: hidden;
+			}
+			
+			#dat-slides-toc span {
+				position: absolute;
+				display: block;
+			}
+			
+			#dat-slides-toc ul {
+				margin: 0;
+				padding: 0;
+			}
+			
+			#dat-slides-toc li {
+				border-top: 1px solid #303030;
+				border-left: 0;
+				border-right: 0;
+				border-bottom: 0;
+				padding: 0;
+				text-align: left;
+				display: block;
+				margin: 0;
+				width: 100%;
+				clear: both;
+			}
+			
+			#dat-slides-toc li a {
+				display: block;
+				padding: 0 18px;
+			}
+			
+			ul.sections {
+				position: absolute;
+				transition: all 350ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
+				top: 43px;
+				bottom: 0px;
+				margin: 0px;
+				padding: 0px;
+			}
+			
+			ul.sections li {
+				position: relative;
+				display: block;
+				list-style: none;
+				height: 100%;
+				float: left;
+			}
+			
+			x-scene {
+				display: block;
+				overflow: hidden;
+				width: 100%;
+				height: 100%;
+			}
+			
+			div.explain {
+				position: absolute;
+				color: #53504d;
+				left: 5%;
+				top: 10%;
+				font-size: 14px;
+				width: 25%;
+			}
+			
+			div.explain h1 {
+				font-size: 24px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="Stats-output"></div>
+		<ul class="navigation">
+			<li>
+				<a id="back" href="">-LIANG.QI-</a>
+			</li>
+			<li class="prev">
+				<a>←</a><span id="s1-prev-slide"></span></li>
+			<li class="desc" id="dat-slides-desc"><span id="page-number">1/5</span>
+				<div id="dat-slides-toc" style="height: 0px; z-index: 1001;">
+					<ul>
+						<li>
+							<a href="#1" data-index="0">1. 饼图</a>
+						</li>
+						<li>
+							<a href="#2" data-index="1">2. 饼图-绑定事件</a>
+						</li>
+						<li>
+							<a href="#3" data-index="2">3. 柱状图</a>
+						</li>
+						<li>
+							<a href="#4" data-index="3">4. 3D热力图-未完成</a>
+						</li>
+						<li>
+							<a href="#5" data-index="4">5. 地球</a>
+						</li>
+					</ul>
+				</div>
+			</li>
+			<li class="next"><span id="s1-next-slide"></span>
+				<a>→</a>
+			</li>
+		</ul>
+		<ul class="sections">
+			<li>
+				<x-scene id="scene-1" cameraposition="0 450 950" stop="true">
+					<x-skybox></x-skybox>
+					<x-plane width="8000" position="0 -1 0" height="8000" color="#ffc87f" rotation="-90 0 0" material="GroundPhongMaterial" shadow="true"></x-plane>
+					<x-mirror width="8000" position="0 -1 0" height="8000" color="0x777777" rotation="-90 0 0"></x-mirror>
+					<x-group class="pie-group" rotation="20 0 0" position="0 100 0">
+					</x-group>
+				</x-scene>
+				<div class="explain">
+					<h1>1. 饼图</h1>
+					<p>一个简单的3D饼图</p>
+				</div>
+			</li>
+			<li>
+				<x-scene id="scene-2" cameraposition="0 450 950" stop="true">
+					<x-skybox></x-skybox>
+					<x-plane width="8000" position="0 -1 0" height="8000" color="#ffc87f" rotation="-90 0 0" material="GroundPhongMaterial" shadow="true"></x-plane>
+					<x-mirror width="8000" position="0 -1 0" height="8000" color="0x777777" rotation="-90 0 0"></x-mirror>
+					<x-group class="pie-group" rotation="20 0 0" position="0 100 0">
+					</x-group>
+				</x-scene>
+				<div class="explain">
+					<h1>2. 饼图-绑定事件</h1>
+					<p>一个绑定了鼠标事件的3D饼图。当鼠标悬浮在饼图中的扇形部分上时，该部分的大小、颜色将发生变化。</p>
+				</div>
+			</li>
+			<li>
+				<x-scene id="scene-3" cameraposition="0 650 750" stop="true">
+					<x-skybox></x-skybox>
+					<x-plane width="8000" position="0 -1 0" height="8000" color="#ffc87f" rotation="-90 0 0" material="GroundPhongMaterial" shadow="true"></x-plane>
+					<x-mirror width="8000" position="0 -1 0" height="8000" color="0x777777" rotation="-90 0 0"></x-mirror>
+					<x-group class="bar-group" rotation="0 0 0" position="0 0 0">
+					</x-group>
+				</x-scene>
+				<div class="explain">
+					<h1>3. 柱状图</h1>
+				</div>
+			</li>
+			<li>
+				<x-scene id="scene-4" cameraposition="0 450 950" stop="true">
+					<x-skybox></x-skybox>
+				</x-scene>
+				<div class="explain">
+					<h1>4. 3D热力图-未完成</h1>
+				</div>
+			</li>
+			<li style="background-color: #000;">
+				<x-scene id="scene-5" cameraposition="0 0 150" stop="true">
+					<x-group>
+						<x-globe radius="50" rotation="0 270 0" texture="world.png">
+						</x-globe>
+					</x-group>
+				</x-scene>
+				<div style="
+    				position: absolute;
+    				z-index: 100000000000;
+    				top: 0px;
+   	 				bottom: 0px;
+    				left: 0px;
+    				right: 0px;
+				"></div>
+			</li>
+		</ul>
+		<script src="lib/dat.gui.js"></script>
+		<script src="lib/jquery.js"></script>
+		<script src="lib/d3.js"></script>
+		<script src="lib/three.js"></script>
+		<script src="lib/Mirror.js"></script>
+		<script src="lib/TrackballControls.js"></script>
+		<script src="lib/stats.js"></script>
+		<script type="text/javascript">
+			$('#dat-slides-desc')
+				.on('mouseover', function() {
+					$('#dat-slides-toc').css({
+						height: '215px'
+					});
+				}).on('mouseout', function() {
+					$('#dat-slides-toc').css({
+						height: '0px'
+					});
+				});
+			var index = 0;
+
+			function resize() {
+				var w = $(window).width();
+				$('ul.sections').css('left', -1 * w * index);
+				$('ul.sections').css('width', w * 5);
+				$('ul.sections li').css('width', w);
+			}
+
+			resize();
+			$(window).trigger('resize');
+			$(window).on('resize', resize);
+
+			$('#dat-slides-toc li a').on('click', function() {
+				var w = $(window).width();
+				index = Number($(this).attr('data-index'));
+				$('ul.sections').css('left', -1 * w * index);
+				$('#page-number').text((index + 1) + '/' + 5);
+				$('x-scene').attr('stop', 'true');
+				window.setTimeout(function() {
+					$('#scene-' + (index + 1)).attr('stop', 'false');
+				}, 350);
+			});
+
+			$('ul.navigation li.next').on('click', function() {
+				var w = $(window).width();
+				index++;
+				if(index > 4) {
+					index = 0
+				}
+				$('ul.sections').css('left', -1 * w * index);
+				$('#page-number').text((index + 1) + '/' + 5);
+				$('x-scene').attr('stop', 'true');
+				window.setTimeout(function() {
+					$('#scene-' + (index + 1)).attr('stop', 'false');
+				}, 350);
+			});
+
+			$('ul.navigation li.prev').on('click', function() {
+				var w = $(window).width();
+				index--;
+				if(index < 0) {
+					index = 5
+				}
+				$('ul.sections').css('left', -1 * w * index);
+				$('#page-number').text((index + 1) + '/' + 5);
+				$('x-scene').attr('stop', 'true');
+				window.setTimeout(function() {
+					$('#scene-' + (index + 1)).attr('stop', 'false');
+				}, 350);
+			});
+
+			var stats = new Stats();
+			stats.setMode(0); // 0: fps, 1: ms
+
+			stats.domElement.style.position = 'absolute';
+			stats.domElement.style.right = '0px';
+			stats.domElement.style.top = '43px';
+			stats.domElement.style.zIndex = 10000;
+
+			document.getElementById("Stats-output").appendChild(stats.domElement);
+
+			function render() {
+				stats.update();
+				requestAnimationFrame(render);
+			}
+			render();
+			requestAnimationFrame(function() {
+				$('#scene-1').attr('stop', 'false');
+			});
+		</script>
+		<script src="lib/X3DEE.js"></script>
+		<script src="js/pie.js"></script>
+		<script src="js/pie2.js"></script>
+		<script src="js/bar.js"></script>
+		<script src="js/cubes.js"></script>
+		<script src="js/globe-1.js"></script>
+		<script src="js/test.js"></script>
+	</body>
+
+</html>

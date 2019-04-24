@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>全媒体数据可视化</title>
+    <link rel="stylesheet" type="text/css" href="css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+</head>
+
+<body>
+    <div class="header">
+        <img class="title" src="img/9.png">
+    </div>
+    <div class="clock">
+        <div class="time">11:05</div>
+        <div class="date">2016-03-15 星期二</div>
+        <div class="weather">18℃ 天气:晴</div>
+    </div>
+    <div class="sidebar left-sidebar">
+        <div class="section">
+            <div class="title">
+                <img src="img/1.png">
+                <span>数据采集总量</span>
+            </div>
+            <div class="record-header">
+                <span class="quantity" id='quantity-total'>0</span>
+                <span class="unit">条</span>
+            </div>
+            <div class="record">
+                <span class="quantity" id='quantity-weibo'>0</span>
+                <span class="unit">条</span>
+            </div>
+            <div class="record-label">微博采集量</div>
+            <div class="record">
+                <span class="quantity" id='quantity-weixin'>0</span>
+                <span class="unit">条</span>
+            </div>
+            <div class="record-label">微信采集量</div>
+            <div class="record">
+                <span class="quantity" id='quantity-chuantong'>0</span>
+                <span class="unit">条</span>
+            </div>
+            <div class="record-label">传统媒体采集量</div>
+        </div>
+        <div class="section">
+            <div class="title">
+                <img src="img/1.png">
+                <span>今日采集总量</span>
+            </div>
+            <div class="record-header">
+                <span class="quantity" id='quantity-today'>0</span>
+                <span class="unit">条</span>
+            </div>
+        </div>
+        <div class="section">
+            <div class="title">
+                <img src="img/3.png">
+                <span>网民情绪</span>
+            </div>
+            <div class="emotion-speedometer">
+                <svg id='emotion-speedometer-svg' width="100%" height="100%"></svg>
+            </div>
+        </div>
+    </div>
+    <div class="sidebar right-sidebar">
+        <div class="section">
+            <div class="title">
+                <img src="img/4.png">
+                <span>今日热点排行</span>
+            </div>
+            <div class="hotspot-ranking">
+                <ol id="hotspot-ranking-list">
+                </ol>
+            </div>
+        </div>
+        <div class="section">
+            <div class="title">
+                <img src="img/5.png">
+                <span>今日热词分布</span>
+            </div>
+            <div class="keyword-cloud">
+                <svg id='keyword-cloud-svg' width="100%" height="100%"></svg>
+            </div>
+        </div>
+    </div>
+    <div id="three-container"></div>
+    <img id="scream" src="img/11.png" style="display: none;">
+    
+    <script src="lib/jquery.js"></script>
+    <script src="lib/d3.js"></script>
+    <script src="lib/d3.layout.cloud.js"></script>
+    <script src="lib/tween.js"></script>
+    <script src="lib/three.js"></script>
+    <script data-main="js/app.js" src="lib/require.js"></script>
+</body>
+
+</html>

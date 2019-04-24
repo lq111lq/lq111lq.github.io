@@ -1,0 +1,261 @@
+/*页面*/
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    height: 100%;
+    margin: 0px;
+    /*background-image: url('img/body_bg.jpg');*/
+    background-color: #131313;
+    background-size: 100% 100%;
+}
+
+img.logo {
+    position: absolute;
+    left: 0px;
+    top: 30px;
+    width: 15%;
+    z-index: 1000;
+}
+
+.loading {
+    display: none;
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    right: 0px;
+    left: 0px;
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index: 10000;
+}
+
+.loading img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -50px;
+    margin-top: -10px;
+    z-index: 10000;
+}
+
+
+/*SVG AXIS*/
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: #FFFFFF;
+    shape-rendering: crispEdges;
+}
+
+.axis text {
+    fill: #FFFFFF;
+    font: 10px sans-serif;
+}
+
+
+/*UI*/
+
+.ui .sidebar {
+    position: absolute;
+    top: 50%;
+    right: -350px;
+    /*bottom: 150px;*/
+    width: 375px;
+    height: 450px;
+    margin-top:-225px;
+    background: #444 url("../img/debut_dark.png") repeat;
+    border-right: #444 solid 1px;
+    border-radius: 5px 0px 0px 5px;
+    transition: right 0.5s;
+    -webkit-transition: right 0.5s;
+    z-index: 1000000;
+}
+
+.ui .sidebar .left-button {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    bottom: 0px;
+    width: 25px;
+    text-align: center;
+    font-size: 30px;
+    color: #000;
+    font-weight: 900;
+    cursor: pointer;
+    border-right: #222222 solid 1px;
+}
+
+.ui .sidebar.hidden {
+    right: -350px;
+}
+
+.ui .sidebar.showen {
+    right: 0px;
+}
+
+.ui .sidebar .header {
+    margin-left: 25px;
+    height: 80px;
+    border-bottom: #222222 solid 1px;
+    width: 349px;
+    text-align: center;
+    line-height: 100%;
+    padding-top: 21px;
+}
+
+.sidebar .main {
+    margin-left: 25px;
+    width: 349px;
+    overflow: hidden;
+}
+
+.sidebar .main-inner {
+    width: 698px;
+    transform: translate(0px, 0px);
+    transition: transform 1s;
+    -webkit-transition: transform 0.5s;
+}
+
+.sidebar .main-inner.show-0 {
+    transform: translate(0px, 0px);
+}
+
+.sidebar .main-inner.show-1 {
+    transform: translate(-349px, 0px);
+}
+
+.sidebar .main ol {
+    float: left;
+    width: 349px;
+    padding: 0px;
+}
+
+.sidebar .main li {
+    display: block;
+    float: left;
+    width: 20%;
+    height: 42px;
+    text-align: center;
+    line-height: 30px;
+    cursor: pointer;
+}
+
+.sidebar .main li div {
+    position: relative;
+    margin: 5px;
+    font-weight: 900;
+    color: #CECECE;
+    border-radius: 5px;
+    border: solid 1px;
+    background-image: linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
+}
+
+.sidebar .main li div:hover {
+    bottom: 1px;
+}
+
+.sidebar .main li div.mousedown {
+    bottom: -1px !important;
+}
+
+.sidebar .main .main-inner li div.selected {
+    bottom: 2px !important;
+    border-width: 4px;
+}
+
+
+/*临时*/
+
+.top-news {
+    position: absolute;
+    z-index: 1;
+    border: rgba(255, 255, 255, 0.99) solid 1px;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.99);
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.top-news .title {
+    height: 40px;
+    line-height: 40px;
+    margin: 0px 20px 0px 20px;
+    font-size: 20px;
+    font-weight: 900;
+    color: #333;
+    outline: none;
+    list-style: none;
+    text-decoration: none;
+    overflow: hidden;
+}
+
+.top-news .title a {
+    color: #333;
+    display: inline-block;
+    outline: none;
+    list-style: none;
+    text-decoration: none;
+}
+
+.top-news .text-container {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 61%;
+    height: 100%;
+    /*background-color: rgba(224,224,224,0.5);*/
+    z-index: 2;
+}
+
+.top-news .img-container {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 39%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.top-news .img-container img {}
+
+.top-news p.digest {
+    color: #333;
+    height: 115px;
+    font-size: 14px;
+    line-height: 22px;
+    margin: 0px;
+    padding: 5px 10px 0px 10px;
+    overflow: hidden;
+}
+
+.top-news.hidden * {
+    display: none;
+}
+
+.top-news .time {
+    color: #333;
+    font-size: 13px;
+    line-height: 22px;
+    position: absolute;
+    bottom: 5px;
+    padding: 5px 10px 0px 10px;
+    overflow: hidden;
+    width: 100%;
+}
+
+.close {
+    position: absolute;
+    z-index: 100000;
+    font-size: 50px;
+    color: #444;
+    cursor: pointer;
+}

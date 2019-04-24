@@ -1,0 +1,71 @@
+<div class="container-fluid">
+    <div alert></div>
+    <div class="page-header" id="line-3">
+        <h1>CSS3RENDER-堆叠面积图</h1>
+    </div>
+    <div class="row" ng-controller="threeChartPageCtrl-1">
+        <div class="col-xs-12">
+            <div id="three-chart-1" class="widget-box">
+            </div>
+        </div>
+        <div class="col-xs-12">
+            <div class="widget-box">
+                <div class="widget-header clearfix">
+                    <span>
+                        <i class="icon-star"></i> &nbsp;网络营销
+                    </span>
+                    <div class="widget-toolbar">
+                        <select ng-model="data" ng-options="subdata as '第'+(subdata.generateIndex+1)+'周' for subdata in topData">
+                        </select>
+                        <button type="button" class="btn btn-info" ng-click="editRecord()">编辑</button>
+                    </div>
+                </div>
+                <div class="widget-body">
+                    <table class="table table-striped table-condensed table-bordered">
+                        <thead>
+                            <th class="text-center">#</th>
+                            <th class="text-center">
+                                邮件营销
+                            </th>
+                            <th class="text-center">
+                                联盟广告
+                            </th>
+                            <th class="text-center">
+                                视频广告
+                            </th>
+                            <th class="text-center">
+                                直接访问
+                            </th>
+                            <th class="text-center">
+                                搜索引擎
+                            </th>
+                        </thead>
+                        <tbody>
+                            <tr ng-class="{'active':record===selectedRecord}" ng-repeat="record in data" ng-click="selectRecord(record)">
+                                <th scope="row" class="text-center">
+                                    {{record.date}}
+                                </th>
+                                <td class="text-center">
+                                    {{record.email}}
+                                </td>
+                                <td class="text-center">
+                                    {{record.ad}}
+                                </td>
+                                <td class="text-center">
+                                    {{record.video}}
+                                </td>
+                                <td class="text-center">
+                                    {{record.access}}
+                                </td>
+                                <td class="text-center">
+                                    {{record.se}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

@@ -1,0 +1,217 @@
+@font-face {
+    font-family: myFont;
+    src: url('myFont.ttf');
+}
+
+@font-face {
+    font-family: number;
+    src: url('number.ttf');
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 1920px;
+    height: 1080px;
+    font-family: myFont;
+}
+
+body {
+    /*background-image: url('../img/bg3.png');*/
+    background-size: 100% 100%;
+    overflow: hidden;
+    background-color: #2A2C32;
+    font-family: myFont;
+}
+
+.header {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 60px;
+    background-color: #000000;
+}
+
+.header .brand,
+.header .title,
+.header .timer {
+    line-height: 60px;
+    font-size: 35px;
+}
+
+.header .brand,
+.header .title {
+    float: left;
+}
+
+.header .brand {
+    color: #2BA2F5;
+    padding: 0px 10px 0px 35px;
+}
+
+.header .title {
+    color: #888888;
+    font-size: 25px;
+    line-height: 65px;
+}
+
+.header .timer {
+    float: left;
+    color: #888888;
+    font-size: 30px;
+    padding-right: 35px;
+    margin-left: 1230px;
+}
+
+.progress {
+    position: absolute;
+    bottom: 60px;
+    width: 100%;
+    height: 1px;
+    background-color: rgba(75, 75, 75, 0.5);
+}
+
+.progress-inner {
+    width: 25%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-right: solid 1px;
+    border-right-color: rgba(255, 255, 255, 1);
+}
+
+.footer {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    height: 60px;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.emotion-speedometer {
+    float: left;
+    color: #888888;
+    font-size: 25px;
+    line-height: 65px;
+    padding: 0px 10px 0px 15px;
+}
+
+#emotion-speedometer-svg {
+    float: left;
+}
+
+.hotspot-ranking-list {
+    float: left;
+    position: relative;
+}
+
+.hotspot-ranking-list .hotspot {
+    position: absolute;
+    top: -31px;
+    height: 80px;
+    width: 240px;
+    color: #FFFFFF;
+}
+
+.hotspot-ranking-list .hotspot .hotspot-ranking {
+    height: 30px;
+    line-height: 30px;
+    border-left: rgba(255, 0, 0, 0.5) solid 5px;
+    padding-left: 15px;
+    font-size: 30px;
+    margin-bottom: 1px;
+}
+
+.hotspot-ranking-list .hotspot .hotspot-title {
+    height: 40px;
+    line-height: 50px;
+    border-left: rgba(255, 255, 255, 0.5) solid 3px;
+    padding-left: 15px;
+    font-size: 18px;
+    position: relative;
+    left: 1px;
+    overflow: hidden;
+}
+
+.hotspot-ranking-list .hotspot .hotspot-title .hotspot-title-text {
+    white-space: nowrap;
+}
+
+.sidebar {
+    position: absolute;
+    bottom: 105px;
+    right: 5px;
+    width: 630px;
+    padding-right: 35px;
+    perspective: 500;
+    -webkit-perspective: 500;
+}
+
+.sidebar .section {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.keyword-cloud {
+    border: 1px solid rgba(61, 160, 221, 0.5);
+    background-color: rgba(42, 51, 64, 0.5);
+    padding: 10px;
+    border-radius: 10px;
+    transform: rotate3d(0, 1, 0, -13deg) translate3d(-45px, 0px, -90px);
+    animation:myanimation 15s infinite;
+    -webkit-animation:myanimation 15s infinite;
+}
+
+@keyframes myanimation {
+    0% {
+        transform: rotate3d(0, 1, 0, -13deg) translate3d(-45px, 0px, -90px);
+    }
+    10% {
+        transform: rotate3d(0, 1, 0, -13deg) translate3d(-45px, 0px, -90px);
+    }
+    50% {
+        transform: rotate3d(0, 1, 0, -29deg) translate3d(-45px, 0px, -90px);
+    }
+    90% {
+        transform: rotate3d(0, 1, 0, -29deg) translate3d(-45px, 0px, -90px);
+    }
+    100% {
+        transform: rotate3d(0, 1, 0, -13deg) translate3d(-45px, 0px, -90px);
+    }
+}
+
+
+/*.sidebar .section .title {
+    margin-bottom: 12px;
+}
+
+.sidebar .section .title img {
+    width: 50px;
+    height: 50px;
+}
+
+.sidebar .section .title span {
+    position: relative;
+    font-size: 20px;
+    color: #45bbff;
+    top: -16px;
+}*/
+
+#collecting-quantity-svg {
+    position: absolute;
+    top: 65px;
+    right: 5px;
+}
+
+#three-container {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    z-index: -100;
+}

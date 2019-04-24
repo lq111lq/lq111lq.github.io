@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>BUFFER粒子系统</title>
+    <style type="text/css">
+    body {
+        background-color: #000000;
+        background-size: 100% 100%;
+        margin: 0px;
+        overflow: hidden;
+        color: #ffffff;
+        font-family: sans-serif;
+        font-size: 13px;
+    }
+    
+    #tool {
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        margin-left: -100px;
+    }
+    </style>
+</head>
+
+<body>
+    <div id="Stats-output"></div>
+    <div id="container"></div>
+    <div id="tool">
+    	<button id="b0">点</button>
+        <button id="b1">平面</button>
+        <button id="b2">球</button>
+        <button id="b3">方块</button>
+        <button id="b4">簇</button>
+        <button id="b5">簇-球</button>
+    </div>
+    <script src="lib/jquery.js"></script>
+    <script src="lib/RequestAnimationFrame.js"></script>
+    <script src="lib/stats.js"></script>
+    <script src="lib/three.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/mouseControl.js"></script>
+    <script src="js/DataCloud.js"></script>
+    <script src="js/index.js"></script>
+</body>
+
+</html>

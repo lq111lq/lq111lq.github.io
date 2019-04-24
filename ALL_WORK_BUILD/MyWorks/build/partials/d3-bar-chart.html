@@ -1,0 +1,211 @@
+<div class="container-fluid">
+    <div alert></div>
+    <div class="page-header" id="bar-1">
+        <h1>标准柱形图</h1>
+    </div>
+    <div class="row" ng-controller="d3BarChartPageCtrl-2">
+        <div class="col-xs-4">
+            <div class="widget-box">
+                <div class="widget-header clearfix">
+                    <span>
+                        <i class="icon-star"></i> &nbsp;收入&支出
+                    </span>
+                    <div class="widget-toolbar">
+                        <button type="button" class="btn btn-info" ng-click="editRecord()">编辑</button>
+                    </div>
+                </div>
+                <div class="widget-body">
+                    <table class="table table-striped table-condensed table-bordered">
+                        <thead>
+                            <th class="text-center">日期</th>
+                            <th class="text-center">
+                                收入
+                            </th>
+                            <th class="text-center">
+                                支出
+                            </th>
+                        </thead>
+                        <tbody>
+                            <tr ng-class="{'active':record===selectedRecord}" ng-repeat="record in data" ng-click="selectRecord(record)">
+                                <td scope="row" class="text-center">
+                                    {{record.date}}
+                                </td>
+                                <td class="text-center">
+                                    {{record.income}}元
+                                </td>
+                                <td class="text-center">
+                                    {{record.expend}}元
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-8">
+            <div class="widget-box">
+                <div id="bar-chart-2" class="widget-body early" style="padding: 15px;">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page-header" id="bar-2">
+        <h1>阶梯瀑布图</h1>
+    </div>
+    <div class="row" ng-controller="d3BarChartPageCtrl-1">
+        <div class="col-xs-4">
+            <div class="widget-box">
+                <div class="widget-header clearfix">
+                    <span>
+                        <i class="icon-star"></i> &nbsp;收入&支出
+                    </span>
+                    <div class="widget-toolbar">
+                        <button type="button" class="btn btn-info" ng-click="editRecord()">编辑</button>
+                    </div>
+                </div>
+                <div class="widget-body">
+                    <table class="table table-striped table-condensed table-bordered">
+                        <thead>
+                            <th class="text-center">日期</th>
+                            <th class="text-center">
+                                收入
+                            </th>
+                            <th class="text-center">
+                                支出
+                            </th>
+                        </thead>
+                        <tbody>
+                            <tr ng-class="{'active':record===selectedRecord}" ng-repeat="record in data" ng-click="selectRecord(record)">
+                                <td scope="row" class="text-center">
+                                    {{record.date}}
+                                </td>
+                                <td class="text-center">
+                                    {{record.income}}元
+                                </td>
+                                <td class="text-center">
+                                    {{record.expend}}元
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-8">
+            <div class="widget-box">
+                <div id="bar-chart-1" class="widget-body early" style="padding: 15px;">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page-header" id="bar-3">
+        <h1>多维条形图</h1>
+    </div>
+    <div class="row" ng-controller="d3BarChartPageCtrl-3">
+        <div class="col-xs-4">
+            <div class="widget-box">
+                <div class="widget-header clearfix">
+                    <span>
+                        <i class="icon-star"></i> &nbsp;多维条形图
+                    </span>
+                    <div class="widget-toolbar">
+                        <button type="button" class="btn btn-info" ng-click="editRecord()">编辑</button>
+                    </div>
+                </div>
+                <div class="widget-body">
+                    <table class="table table-striped table-condensed table-bordered">
+                        <thead>
+                            <th class="text-center">地点</th>
+                            <th class="text-center">
+                                GML
+                            </th>
+                            <th class="text-center">
+                                PYP
+                            </th>
+                            <th class="text-center">
+                                WTC
+                            </th>
+                            <th class="text-center">
+                                ZTW
+                            </th>
+                        </thead>
+                        <tbody>
+                            <tr ng-class="{'active':record===selectedRecord}" ng-repeat="record in data" ng-click="selectRecord(record)">
+                                <td scope="row" class="text-center">
+                                    {{record.site}}
+                                </td>
+                                <td class="text-center">
+                                    {{record.gml}}%
+                                </td>
+                                <td class="text-center">
+                                    {{record.pyp}}%
+                                </td>
+                                <td class="text-center">
+                                    {{record.wtc}}%
+                                </td>
+                                <td class="text-center">
+                                    {{record.ztw}}%
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-8">
+            <div class="widget-box">
+                <div id="bar-chart-3" class="widget-body early" style="padding: 15px;">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page-header" id="bar-4">
+        <h1>温度计式图表</h1>
+    </div>
+    <div class="row" ng-controller="d3BarChartPageCtrl-4">
+        <div class="col-xs-4">
+            <div class="widget-box">
+                <div class="widget-header clearfix">
+                    <span>
+                        <i class="icon-star"></i> &nbsp;温度计式图表
+                    </span>
+                    <div class="widget-toolbar">
+                        <button type="button" class="btn btn-info" ng-click="editRecord()">编辑</button>
+                    </div>
+                </div>
+                <div class="widget-body">
+                    <table class="table table-striped table-condensed table-bordered">
+                        <thead>
+                            <th class="text-center">Name</th>
+                            <th class="text-center">
+                                Acutal
+                            </th>
+                            <th class="text-center">
+                                Forecast
+                            </th>
+                        </thead>
+                        <tbody>
+                            <tr ng-class="{'active':record===selectedRecord}" ng-repeat="record in data" ng-click="selectRecord(record)">
+                                <td scope="row" class="text-center">
+                                    {{record.name}}
+                                </td>
+                                <td class="text-center">
+                                    {{record.acutal}}
+                                </td>
+                                <td class="text-center">
+                                    {{record.forecast}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-8">
+            <div class="widget-box">
+                <div id="bar-chart-4" class="widget-body early" style="padding: 15px;">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

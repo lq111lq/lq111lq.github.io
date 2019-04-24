@@ -1,0 +1,81 @@
+<div class="container-fluid">
+    <div alert></div>
+    <div class="page-header" id="pie-1">
+        <h1>标准饼图</h1>
+    </div>
+    <div class="row" ng-controller="d3PieChartPageCtrl-1">
+        <div class="col-xs-4">
+            <div class="widget-box">
+                <div class="widget-header clearfix">
+                    <span>
+                        <i class="icon-star"></i> &nbsp;浏览器用户数量
+                    </span>
+                    <div class="widget-toolbar">
+                        <button type="button" class="btn btn-info" ng-click="editRecord()">编辑</button>
+                    </div>
+                </div>
+                <div class="widget-body">
+                    <table class="table table-striped table-condensed table-bordered">
+                        <thead>
+                            <th class="text-center">Date</th>
+                            <th class="text-center">
+                                Chrome
+                            </th>
+                            <th class="text-center">
+                                Firefox
+                            </th>
+                            <th class="text-center">
+                                Safari
+                            </th>
+                            <th class="text-center">
+                                IE9+
+                            </th>
+                            <th class="text-center">
+                                IE8-
+                            </th>
+                        </thead>
+                        <tbody>
+                            <tr ng-class="{'active':record===selectedRecord}" ng-repeat="record in data" ng-click="selectRecord(record)">
+                                <td scope="row" class="text-center">
+                                    {{record.date}}
+                                </td>
+                                <td class="text-center">
+                                    {{record.chrome}}
+                                </td>
+                                <td class="text-center">
+                                    {{record.firefox}}
+                                </td>
+                                <td class="text-center">
+                                    {{record.safari}}
+                                </td>
+                                <td class="text-center">
+                                    {{record.ie9}}
+                                </td>
+                                <td class="text-center">
+                                    {{record.ie8}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-8">
+            <div class="widget-box">
+                <div id="pie-chart-1" class="widget-body early" style="padding: 15px;">
+                </div>
+            </div>
+        </div>
+    </div>
+        <div class="page-header" id="pie-2">
+        <h1>环形图</h1>
+    </div>
+    <div class="row" ng-controller="d3PieChartPageCtrl-2">
+        <div class="col-xs-12">
+            <div class="widget-box">
+                <div id="pie-chart-2" class="widget-body early" style="padding: 15px;">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+		<style type="text/css">
+			html,
+			body {
+				width: 100%;
+				height: 100%;
+				margin: 0px;
+				overflow: hidden;
+			}
+			
+			.explain {
+				position: absolute;
+				top: 5px;
+				left: 5px;
+				border: 1px #000 solid;
+				padding: 5px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!--     <div class="explain">
+        坐标—
+        <br> 蓝：Z+ 红：X+ 绿：Y+
+        <br>
+    </div> -->
+		<div style="position: absolute;top:0px;left:0px;opacity: 0;z-index: -100000">
+			<div id='i' style="width: 512px;height: 512px;overflow: hidden;">
+				<div style="color: #71BACA;font-size: 60px;font-weight: 900;text-align: center;">浏览器市场占有率</div>
+				<div style="color: #62BFE1;font-size: 40px;text-align: center;">2016年-第二季度</div>
+				<div style="padding: 20px;line-height: 35px;font-size: 30px;color: #000000">
+					&nbsp;&nbsp;浏览器市场占有率是非常重要的信息。根据 W3CSchool 上近几年的日志文件的统计数据，您可以看到本站用户的浏览器使用的长期趋势。我们可以看到各常用的浏览器所占有的市场比例。
+				</div>
+			</div>
+		</div>
+		<div style="position: absolute;top: 100px;left: 10px;opacity: 0;z-index: -100000;">
+			<div id='j1' style="width: 256px;height: 256px;">
+				<div style="text-align: right;font-size: 90px;font-weight: 900;color: #62BFE1;">01</div>
+				<div style="font-size: 25px;line-height: 30px;text-align: right;">
+					Google Chrome<br> 又称Google浏览器
+					<br> 由Google公司开发
+				</div>
+			</div>
+			<div id='j2' style="width: 256px;height: 256px;">
+				<div style="text-align: right;font-size: 90px;font-weight: 900;color: #62BFE1;">02</div>
+				<div style="font-size: 25px;line-height: 30px;text-align: right;">
+					Mozilla Firefox <br> 中文俗称“火狐”
+				</div>
+			</div>
+			<div id='j3' style="width: 256px;height: 256px;">
+				<div style="text-align: right;font-size: 90px;font-weight: 900;color: #62BFE1;">03</div>
+				<div style="font-size: 25px;line-height: 30px;text-align: right;">
+					Internet Explorer<br> 真爱生命远离IE8
+				</div>
+			</div>
+			<div id='j4' style="width: 256px;height: 256px;">
+				<div style="text-align: right;font-size: 90px;font-weight: 900;color: #62BFE1;">04</div>
+				<div style="font-size: 25px;line-height: 30px;text-align: right;">
+					Opera<br> 世界最快的浏览器
+					<br> 最新版本是12
+				</div>
+			</div>
+			<div id='j5' style="width: 256px;height: 256px;">
+				<div style="text-align: right;font-size: 90px;font-weight: 900;color: #62BFE1;">05</div>
+				<div style="font-size: 25px;line-height: 30px;text-align: right;">
+					傲游Maxthon<br> 视频支持很不错
+				</div>
+			</div>
+		</div>
+		<script src="lib/three.js"></script>
+		<script src="lib/TrackballControls.js"></script>
+		<script src="lib/html2canvas.js"></script>
+		<script src="lib/Mirror.js" type="text/javascript" charset="utf-8"></script>
+		<script type="x-shader/x-vertex" id="vertexShader">
+			varying vec3 vWorldPosition; void main() { vec4 worldPosition = modelMatrix * vec4( position, 1.0 ); vWorldPosition = worldPosition.xyz; gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 ); }
+		</script>
+		<script type="x-shader/x-fragment" id="fragmentShader">
+			uniform vec3 topColor; uniform vec3 bottomColor; uniform float offset; uniform float exponent; varying vec3 vWorldPosition; void main() { float h = normalize( vWorldPosition + offset ).y; gl_FragColor = vec4( mix( bottomColor, topColor, max( pow( max(
+			h , 0.0), exponent ), 0.0 ) ), 1.0 ); }
+		</script>
+		<script>
+			/*globals THREE*/
+			var renderer = new THREE.WebGLRenderer({
+				antialias: true
+			});
+			renderer.setSize(window.innerWidth, window.innerHeight);
+			renderer.setClearColor(0xA0A0A0);
+			renderer.shadowMapEnabled = true;
+			document.body.appendChild(renderer.domElement);
+			var scene = new THREE.Scene();
+			scene.fog = new THREE.Fog(0x050505, 1, 5000);
+			scene.fog.color.setHSL(0.6, 0, 1);
+			var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 100000);
+			//camera.position.x = 350;
+			camera.position.y = 350;
+			camera.position.z = 350;
+			camera.lookAt(scene.position);
+			// var gridHelper = new THREE.GridHelper(1000, 25);
+			// scene.add(gridHelper);
+			// gridHelper = new THREE.GridHelper(100, 25);
+			// gridHelper.rotateX(0.5 * Math.PI)
+			// scene.add(gridHelper);
+			// gridHelper = new THREE.GridHelper(100, 25);
+			// gridHelper.rotateZ(0.5 * Math.PI)
+			// scene.add(gridHelper);
+			// var axisHelper = new THREE.AxisHelper(500);
+			// scene.add(axisHelper);
+			var controls = new THREE.TrackballControls(camera, renderer.domElement);
+			controls.minDistance = 0.0;
+			controls.maxDistance = 500.0;
+			controls.dynamicDampingFactor = 0.1;
+			var index = 0;
+
+			function createRadian(outerRadius, innerRadius, startAngle, endAngle, height) {
+				var shape = (function() {
+					var shape = new THREE.Shape();
+					shape.moveTo(outerRadius * Math.cos(startAngle), outerRadius * Math.sin(startAngle));
+					shape.absarc(0, 0, outerRadius, startAngle, endAngle, true);
+					shape.lineTo(innerRadius * Math.cos(endAngle), innerRadius * Math.sin(endAngle));
+					shape.absarc(0, 0, innerRadius, endAngle, startAngle, true);
+					shape.lineTo(outerRadius * Math.cos(startAngle), outerRadius * Math.sin(startAngle));
+					return shape;
+				})();
+				var options = {
+					amount: height,
+					bevelThickness: 0,
+					bevelSize: 0,
+					bevelSegments: 0,
+					bevelEnabled: false,
+					curveSegments: 30,
+					steps: 5
+				};
+				var geom = new THREE.ExtrudeGeometry(shape, options);
+				var radian = (function(geom) {
+					geom.rotateX(-0.5 * Math.PI);
+					var material = new THREE.MeshPhongMaterial({
+						color: new THREE.Color(Math.random(), Math.random(), Math.random()),
+						shading: THREE.SmoothShading,
+						side: THREE.DoubleSide
+					});
+
+					var diffuseColor = new THREE.Color();
+					diffuseColor.setHSL(0, 0, 0.7);
+					diffuseColor.multiplyScalar(1);
+					// material.color.copy(diffuseColor);
+					var specularColor = new THREE.Color();
+					specularColor.copy(diffuseColor);
+					specularColor.multiplyScalar(0.15);
+					material.specular.copy(specularColor);
+					material.shininess = 40
+					return new THREE.Mesh(geom, material);
+				})(geom);
+				radian.castShadow = true;
+				radian.receiveShadow = true;
+				var averageRadius = innerRadius + (outerRadius - innerRadius) * 0.8;
+				var averageAngle = startAngle + (endAngle - startAngle) / 2;
+				var geometry = new THREE.SphereGeometry(1, 16, 16);
+				var material = new THREE.MeshBasicMaterial({
+					color: 0x888888
+				});
+				var sphere = new THREE.Mesh(geometry, material);
+				sphere.position.x = averageRadius * Math.cos(averageAngle);
+				sphere.position.z = -averageRadius * Math.sin(averageAngle);
+				sphere.position.y = 0;
+				radian.add(sphere);
+				var lineMaterial = new THREE.LineBasicMaterial({
+					color: 0x888888
+				});
+				var lineGeometry = new THREE.Geometry();
+				lineGeometry.vertices.push(
+					new THREE.Vector3(averageRadius * Math.cos(averageAngle), height + 2, -averageRadius * Math.sin(averageAngle)),
+					new THREE.Vector3(averageRadius * Math.cos(averageAngle) * 1.3, height*1.3, -averageRadius * Math.sin(averageAngle) * 1.3)
+				);
+				var line = new THREE.Line(lineGeometry, lineMaterial);
+				radian.add(line);
+				index++;
+				if (index === 6) {
+					index = 1;
+				}
+				html2canvas(document.getElementById('j' + index)).then(function(canvas) {
+					var texture = new THREE.Texture(canvas)
+					texture.needsUpdate = true;
+					var material = new THREE.SpriteMaterial({
+						map: texture
+					});
+					var sprite = new THREE.Sprite(material);
+					sprite.scale.set(100, 100, 100);
+					sprite.position.set(averageRadius * Math.cos(averageAngle) * 1.6, height * 1.6, -averageRadius * Math.sin(averageAngle) * 1.6)
+					radian.add(sprite);
+				});
+				radian.position.y = -height;
+				return radian;
+			}
+
+			function createTextPlane(cb) {
+				html2canvas(document.getElementById('i')).then(function(canvas) {
+					var texture = new THREE.Texture(canvas)
+					texture.needsUpdate = true;
+					var material = new THREE.MeshBasicMaterial({
+						map: texture,
+						transparent: true,
+						side:THREE.DoubleSide
+					});
+					// var material2 = new THREE.MeshBasicMaterial({
+					//     color: 0x0000ff
+					// });
+					var textPlane = new THREE.Mesh(new THREE.PlaneGeometry(350, 250, 1), material);
+					textPlane.castShadow = true;
+					textPlane.receiveShadow = true;
+					cb(textPlane);
+				});
+			}
+			var g = new THREE.Group();
+			scene.add(g);
+			g.add(createRadian(185, 85, 0 * Math.PI, 0.35 * Math.PI, 60));
+			g.add(createRadian(185, 85, 0.40 * Math.PI, 0.60 * Math.PI, 60));
+			g.add(createRadian(185, 85, 0.65 * Math.PI, 1.05 * Math.PI, 60));
+			g.add(createRadian(185, 85, 1.10 * Math.PI, 1.25 * Math.PI, 60));
+			g.add(createRadian(185, 85, 1.30 * Math.PI, 1.50 * Math.PI, 60));
+			g.rotation.x = 0.1*Math.PI;
+			g.position.y = 150;
+			createTextPlane(function(textPlane) {
+				textPlane.rotation.x = -Math.PI / 2 + 0.1*Math.PI;
+				textPlane.position.set(205, 51, 170);
+				scene.add(textPlane);
+			});
+			// var plane = new THREE.Mesh(
+			//     new THREE.PlaneBufferGeometry(1000, 1000),
+			//     new THREE.MeshBasicMaterial({
+			//         color: 0xffffff,
+			//         opacity: 0.5,
+			//         transparent: true
+			//     })
+			// );
+			// plane.rotation.x = -Math.PI / 2;
+			// scene.add(plane);
+			var groundGeo = new THREE.PlaneBufferGeometry(10000, 10000);
+			var groundMat = new THREE.MeshPhongMaterial({
+				color: 0xffffff,
+				specular: 0x050505,
+				opacity: 0.8,
+				transparent: true
+			});
+//			THREE.ImageUtils.loadTexture('jsby.jpg', undefined, function(tex) {
+//				groundMat.map = tex;
+//				groundMat.map.wrapS = THREE.RepeatWrapping;
+//				groundMat.map.wrapT = THREE.RepeatWrapping;
+//				groundMat.map.repeat.set(40, 40);
+//				groundMat.needsUpdate = true;
+//			});
+			groundMat.color.setHSL(0.095, 1, 0.75);
+			var ground = new THREE.Mesh(groundGeo, groundMat);
+			ground.rotation.x = -Math.PI / 2;
+			ground.position.y = -1;
+			ground.receiveShadow = true;
+			scene.add(ground);
+			
+			var WIDTH = window.innerWidth;
+			var HEIGHT = window.innerHeight;
+			
+			var groundMirror = new THREE.Mirror(renderer, camera, {
+				clipBias: 0.003,
+				textureWidth: WIDTH,
+				textureHeight: HEIGHT,
+				color: 0x777777
+			});
+			
+			// MIRROR planes
+			var mirrorMesh = new THREE.Mesh(groundGeo, groundMirror.material);
+			mirrorMesh.add(groundMirror);
+			mirrorMesh.rotateX(-Math.PI / 2);
+			scene.add(mirrorMesh);
+			mirrorMesh.position.y = -1;
+			
+			var ambientLight = new THREE.AmbientLight(0x303030); // 0.2
+			var light = new THREE.DirectionalLight(0xffffff, 0.95);
+			light.castShadow = true;
+			light.shadowMapWidth = 2048;
+			light.shadowMapHeight = 2048;
+			var d = 500;
+			light.shadowCameraLeft = -d;
+			light.shadowCameraRight = d;
+			light.shadowCameraTop = d;
+			light.shadowCameraBottom = -d;
+			light.shadowCameraFar = 3500;
+			light.shadowBias = -0.0001;
+			light.position.set(-500, 1000, 500);
+			scene.add(ambientLight);
+			scene.add(light);
+			var hemiLight = new THREE.HemisphereLight(0xffffff, 0xffffff, 0.4);
+			hemiLight.color.setHSL(0.6, 1, 0.6);
+			hemiLight.groundColor.setHSL(0.095, 1, 0.75);
+			hemiLight.position.set(0, 500, 0);
+			scene.add(hemiLight);
+			// SKYDOME
+			var vertexShader = document.getElementById('vertexShader').textContent;
+			var fragmentShader = document.getElementById('fragmentShader').textContent;
+			var uniforms = {
+				topColor: {
+					type: "c",
+					value: new THREE.Color(0x0077ff)
+				},
+				bottomColor: {
+					type: "c",
+					value: new THREE.Color(0xffffff)
+				},
+				offset: {
+					type: "f",
+					value: 33
+				},
+				exponent: {
+					type: "f",
+					value: 0.6
+				}
+			};
+			uniforms.topColor.value.copy(hemiLight.color);
+			scene.fog.color.copy(uniforms.bottomColor.value);
+			var skyGeo = new THREE.SphereGeometry(4000, 32, 15);
+			var skyMat = new THREE.ShaderMaterial({
+				vertexShader: vertexShader,
+				fragmentShader: fragmentShader,
+				uniforms: uniforms,
+				side: THREE.BackSide
+			});
+			var sky = new THREE.Mesh(skyGeo, skyMat);
+			scene.add(sky);
+			var render = function() {
+				controls.update();
+				groundMirror.render();
+				renderer.render(scene, camera);
+				requestAnimationFrame(render);
+			};
+			render();
+			window.addEventListener('resize', onWindowResize, false);
+
+			function onWindowResize() {
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+				renderer.setSize(window.innerWidth, window.innerHeight);
+			}
+		</script>
+	</body>
+
+</html>
